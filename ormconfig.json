@@ -1,0 +1,10 @@
+{
+  "type": "mysql",
+  "host": "mysql-2c6c3afd-angelovianajr-317e.g.aivencloud.com",
+  "port": 14200,
+  "username": "avnadmin",
+  "password": "AVNS_3pcGnYDy2ccyrdbZEge",
+  "database": "defaultdb",
+  "entities": ["src/**/**.entity{.ts,.js}"],
+  "synchronize": true
+}
