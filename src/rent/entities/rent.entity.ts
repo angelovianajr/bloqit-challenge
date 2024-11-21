@@ -1,25 +1,37 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
+import { Locker } from 'src/locker/entities/locker.entity';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne, JoinColumn, OneToMany, ManyToMany, ManyToOne } from 'typeorm';
+import { RentSize } from '../rent.interface'
 
 @Entity()
 export class Rent {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column()
-  lockerId: string;
+  @ManyToOne(() => Locker, (locker) => locker.rents, { nullable: true })
+  @JoinColumn({ name: 'lockerId' })
+  locker: Locker;
 
-  @Column()
+  @Column({
+    nullable: true
+  })
   weight: number;
 
-  @Column()
-  size: string;
+  @Column({
+    type: "enum",
+    enum: RentSize
+  })
+  size: RentSize;
 
   @CreateDateColumn()
   createdAt: Date;
 
-  @Column()
+  @Column({
+    nullable: true
+  })
   droppedOffAt: Date;
 
-  @Column()
+  @Column({
+    nullable: true
+  })
   pickedUpAt: Date;
 }

@@ -6,6 +6,8 @@ import { LockerModule } from './locker/locker.module';
 import { BloqModule } from './bloq/bloq.module';
 import { RentModule } from './rent/rent.module';
 import { Bloq } from './bloq/entities/bloq.entity';
+import { Locker } from './locker/entities/locker.entity';
+import { Rent } from './rent/entities/rent.entity';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -15,7 +17,7 @@ import { Bloq } from './bloq/entities/bloq.entity';
     username: 'avnadmin',
     password: 'AVNS_3pcGnYDy2ccyrdbZEge',
     database: 'defaultdb',
-    entities: [Bloq],
+    entities: [Bloq, Locker, Rent],
     synchronize: true,
   }), LockerModule, BloqModule, RentModule],
   controllers: [AppController],

@@ -19,16 +19,16 @@ export class LockerController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.lockerService.findOne(+id);
+    return this.lockerService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateLockerDto: UpdateLockerDto) {
-    return this.lockerService.update(+id, updateLockerDto);
+    return this.lockerService.update(id, updateLockerDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.lockerService.remove(+id);
+    return this.lockerService.remove(id);
   }
 }

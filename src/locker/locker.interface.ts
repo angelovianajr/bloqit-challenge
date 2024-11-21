@@ -1,11 +1,11 @@
-enum LockerStatus {
-  OPEN,
-  CLOSED,
+export enum LockerStatus {
+  OPEN = "OPEN",
+  CLOSED = "CLOSED",
 }
 
 export interface Locker {
-  id: String
-  bloqId: String
+  id: string
+  bloqId: string
   status: LockerStatus
   isOccupied: boolean
 }
