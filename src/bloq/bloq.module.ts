@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { BloqService } from './bloq.service';
 import { BloqController } from './bloq.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -8,5 +8,8 @@ import { Bloq } from './entities/bloq.entity';
   imports: [TypeOrmModule.forFeature([Bloq])],
   controllers: [BloqController],
   providers: [BloqService],
+  exports: [BloqService],
 })
-export class BloqModule {}
+export class BloqModule {
+  constructor(private bloqService: BloqService) {}
+}

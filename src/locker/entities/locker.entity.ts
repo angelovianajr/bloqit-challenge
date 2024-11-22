@@ -22,5 +22,5 @@ export class Locker {
   isOccupied: boolean;
 
   @OneToMany(() => Rent, (rent) => rent.locker, { nullable: true })
-  rents: Rent[] 
+  rents: Rent[]
 }

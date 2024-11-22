@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { RentService } from './rent.service';
-import { CreateRentDto } from './dto/create-rent.dto';
+import { CreateRentDto, RentLinkLockerDto } from './dto/create-rent.dto';
 import { UpdateRentDto } from './dto/update-rent.dto';
 
 @Controller('rent')
@@ -19,16 +19,22 @@ export class RentController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.rentService.findOne(+id);
+    return this.rentService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRentDto: UpdateRentDto) {
-    return this.rentService.update(+id, updateRentDto);
+  @Patch('/:id/linklocker')
+  linkLocker(@Param('id') id: string, @Body() rentLinkLockerDto: RentLinkLockerDto) {
+    return this.rentService.linkLocker(id, rentLinkLockerDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.rentService.remove(+id);
+  @Patch('/:id/dropoff')
+  dropOffParcel(@Param('id') id: string) {
+    return this.rentService.dropOff(id);
   }
+
+  @Patch('/:id/dropoff')
+  pickUpParcel(@Param('id') id: string) {
+    return this.rentService.pickUp(id);
+  }
+
 }

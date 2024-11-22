@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BloqService } from 'src/bloq/bloq.service';
 import { Repository } from 'typeorm';
 import { CreateLockerDto } from './dto/create-locker.dto';
-import { UpdateLockerDto, UpdateLockerStatusDTO } from './dto/update-locker.dto';
+import { UpdateLockerDto, UpdateLockerOccupationDTO, UpdateLockerStatusDTO } from './dto/update-locker.dto';
 import { Locker } from './entities/locker.entity';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class LockerService {
   constructor(
     @InjectRepository(Locker)
     private lockerRepository: Repository<Locker>,
-    private bloqService: BloqService
+    private bloqService: BloqService,
   ) {}
 
   //Locker managment, the routes would be protected
@@ -30,11 +30,21 @@ export class LockerService {
   }
 
   findAll() {
-    return this.lockerRepository.find()
+    return this.lockerRepository.find({
+      relations: {
+        bloq: true
+      }
+    })
   }
 
   findOne(id: string) {
-    return this.lockerRepository.findOneBy({ id })
+    return this.lockerRepository.findOne({
+      where:{
+        id
+      },
+      relations: {
+        bloq: true
+      } })
   }
 
   async update(id: string, updateLockerDto: UpdateLockerDto) {
@@ -55,11 +65,20 @@ export class LockerService {
     return this.lockerRepository.delete({ id })
   }
 
-  async updateLockerStatus(updateLockerStatusDTO: UpdateLockerStatusDTO) {
-    let lockerEntity = await this.lockerRepository.findOneBy({ id: updateLockerStatusDTO.id });
+  async updateLockerStatus(id: string, updateLockerStatusDTO: UpdateLockerStatusDTO) {
+    let lockerEntity = await this.lockerRepository.findOneBy({ id });
     if(!lockerEntity) return new Error("Locker don't exists")
 
     lockerEntity.status = updateLockerStatusDTO.status
+    
+    return await this.lockerRepository.save(lockerEntity);
+  }
+
+  async updateLockerOccupation(id: string, updateLockerOccupationDTO: UpdateLockerOccupationDTO) {
+    let lockerEntity = await this.lockerRepository.findOneBy({ id });
+    if(!lockerEntity) return new Error("Locker don't exists")
+
+    lockerEntity.isOccupied = updateLockerOccupationDTO.isOccupied
     
     return await this.lockerRepository.save(lockerEntity);
   }

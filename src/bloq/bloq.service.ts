@@ -18,7 +18,7 @@ export class BloqService {
     bloqEntity.title = createBloqDto.title
     bloqEntity.address = createBloqDto.address
 
-    return this.bloqRepository.create(bloqEntity)
+    return this.bloqRepository.save(bloqEntity)
   }
 
   findAll() {
