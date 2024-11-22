@@ -8,19 +8,25 @@ import { RentModule } from './rent/rent.module';
 import { Bloq } from './bloq/entities/bloq.entity';
 import { Locker } from './locker/entities/locker.entity';
 import { Rent } from './rent/entities/rent.entity';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
+  imports: [ConfigModule.forRoot({
+    isGlobal: true
+  }), 
+  TypeOrmModule.forRoot({
     type: 'mysql',
-    host: 'mysql-2c6c3afd-angelovianajr-317e.g.aivencloud.com',
-    port: 14200,
-    username: 'avnadmin',
-    password: 'AVNS_3pcGnYDy2ccyrdbZEge',
-    database: 'defaultdb',
+    host: process.env.DATABASE_HOST,
+    port: Number(process.env.DATABASE_PORT),
+    username: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME,
+    logging:true,
     entities: [Bloq, Locker, Rent],
     synchronize: true,
   }), LockerModule, BloqModule, RentModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+}
