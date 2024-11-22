@@ -1,4 +1,4 @@
-import { Locker } from 'src/locker/entities/locker.entity';
+import { Locker } from '../../locker/entities/locker.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()

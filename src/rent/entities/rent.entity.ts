@@ -1,5 +1,5 @@
-import { Locker } from 'src/locker/entities/locker.entity';
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne, JoinColumn, OneToMany, ManyToMany, ManyToOne } from 'typeorm';
+import { Locker } from '../../locker/entities/locker.entity';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, JoinColumn, ManyToOne } from 'typeorm';
 import { RentSize } from '../rent.interface'
 
 @Entity()

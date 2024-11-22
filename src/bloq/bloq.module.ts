@@ -10,6 +10,4 @@ import { Bloq } from './entities/bloq.entity';
   providers: [BloqService],
   exports: [BloqService],
 })
-export class BloqModule {
-  constructor(private bloqService: BloqService) {}
-}
+export class BloqModule {}

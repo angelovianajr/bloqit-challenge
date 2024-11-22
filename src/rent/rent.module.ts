@@ -10,5 +10,6 @@ import { LockerModule } from 'src/locker/locker.module';
   imports: [TypeOrmModule.forFeature([Rent, Locker]), LockerModule],
   controllers: [RentController],
   providers: [RentService],
+  exports: [RentService],
 })
 export class RentModule {}

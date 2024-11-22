@@ -1,6 +1,6 @@
-import { Bloq } from 'src/bloq/entities/bloq.entity';
-import { Rent } from 'src/rent/entities/rent.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Bloq } from '../../bloq/entities/bloq.entity';
+import { Rent } from '../../rent/entities/rent.entity';
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { LockerStatus } from '../locker.interface';
 
 @Entity()
