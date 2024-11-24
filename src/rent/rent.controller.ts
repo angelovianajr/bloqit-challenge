@@ -32,7 +32,7 @@ export class RentController {
     return this.rentService.dropOff(id);
   }
 
-  @Patch('/:id/dropoff')
+  @Patch('/:id/pickup')
   pickUpParcel(@Param('id') id: string) {
     return this.rentService.pickUp(id);
   }
