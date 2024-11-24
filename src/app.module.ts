@@ -9,6 +9,7 @@ import { Bloq } from './bloq/entities/bloq.entity';
 import { Locker } from './locker/entities/locker.entity';
 import { Rent } from './rent/entities/rent.entity';
 import { ConfigModule } from '@nestjs/config';
+import { RentSubscriber } from './rent/entities/rent.subscriber';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -24,6 +25,7 @@ import { ConfigModule } from '@nestjs/config';
     logging:true,
     entities: [Bloq, Locker, Rent],
     synchronize: true,
+    subscribers: [RentSubscriber]
   }), LockerModule, BloqModule, RentModule],
   controllers: [AppController],
   providers: [AppService],

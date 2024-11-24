@@ -1,13 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Locker } from 'src/locker/entities/locker.entity';
 import { Repository } from 'typeorm';
 import { CreateRentDto, RentLinkLockerDto } from './dto/create-rent.dto';
-import { UpdateRentDto } from './dto/update-rent.dto';
 import { Rent } from './entities/rent.entity';
-import { LockerService } from 'src/locker/locker.service';
-import { LockerStatus } from 'src/locker/locker.interface';
-import { UpdateLockerOccupationDTO } from 'src/locker/dto/update-locker.dto';
+import { LockerService } from '../locker/locker.service';
+import { UpdateLockerOccupationDTO } from '../locker/dto/update-locker.dto';
 
 @Injectable()
 export class RentService {

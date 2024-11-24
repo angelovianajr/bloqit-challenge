@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BloqService } from 'src/bloq/bloq.service';
+import { BloqService } from '../bloq/bloq.service';
 import { Repository } from 'typeorm';
 import { CreateLockerDto } from './dto/create-locker.dto';
 import { UpdateLockerDto, UpdateLockerOccupationDTO, UpdateLockerStatusDTO } from './dto/update-locker.dto';

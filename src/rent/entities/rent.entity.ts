@@ -1,6 +1,6 @@
 import { Locker } from '../../locker/entities/locker.entity';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, JoinColumn, ManyToOne } from 'typeorm';
-import { RentSize } from '../rent.interface'
+import { RentSize, RentStatus } from '../rent.interface'
 
 @Entity()
 export class Rent {
@@ -24,6 +24,8 @@ export class Rent {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  status: RentStatus
 
   @Column({
     nullable: true
